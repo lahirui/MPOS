@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="PurchaseSummaryDS" targetNamespace="http://tempuri.org/PurchaseSummaryDS.xsd" xmlns:mstns="http://tempuri.org/PurchaseSummaryDS.xsd" xmlns="http://tempuri.org/PurchaseSummaryDS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="PurchaseSummaryDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="PurchaseSummaryDS" msprop:Generator_UserDSName="PurchaseSummaryDS">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="PurchaseSummaryDS" msprop:Generator_TableClassName="PurchaseSummaryDSDataTable" msprop:Generator_TableVarName="tablePurchaseSummaryDS" msprop:Generator_TablePropName="_PurchaseSummaryDS" msprop:Generator_RowDeletingName="PurchaseSummaryDSRowDeleting" msprop:Generator_RowChangingName="PurchaseSummaryDSRowChanging" msprop:Generator_RowEvHandlerName="PurchaseSummaryDSRowChangeEventHandler" msprop:Generator_RowDeletedName="PurchaseSummaryDSRowDeleted" msprop:Generator_UserTableName="PurchaseSummaryDS" msprop:Generator_RowChangedName="PurchaseSummaryDSRowChanged" msprop:Generator_RowEvArgName="PurchaseSummaryDSRowChangeEvent" msprop:Generator_RowClassName="PurchaseSummaryDSRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="EPF" msprop:Generator_ColumnVarNameInTable="columnEPF" msprop:Generator_ColumnPropNameInRow="EPF" msprop:Generator_ColumnPropNameInTable="EPFColumn" msprop:Generator_UserColumnName="EPF" type="xs:string" minOccurs="0" />
+              <xs:element name="FullName" msprop:Generator_ColumnVarNameInTable="columnFullName" msprop:Generator_ColumnPropNameInRow="FullName" msprop:Generator_ColumnPropNameInTable="FullNameColumn" msprop:Generator_UserColumnName="FullName" type="xs:string" minOccurs="0" />
+              <xs:element name="Department" msprop:Generator_ColumnVarNameInTable="columnDepartment" msprop:Generator_ColumnPropNameInRow="Department" msprop:Generator_ColumnPropNameInTable="DepartmentColumn" msprop:Generator_UserColumnName="Department" type="xs:string" minOccurs="0" />
+              <xs:element name="Amount" msprop:Generator_ColumnVarNameInTable="columnAmount" msprop:Generator_ColumnPropNameInRow="Amount" msprop:Generator_ColumnPropNameInTable="AmountColumn" msprop:Generator_UserColumnName="Amount" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

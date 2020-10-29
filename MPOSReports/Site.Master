@@ -27,6 +27,9 @@
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
 
 </head>
 <body>
@@ -76,10 +79,10 @@
                 </div>
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="Default.aspx">Home</a></li>
-                    <li><a href="#">Purchase Detailes</a></li>
-                    <li><a href="#">Purchase Summary</a></li>
-                    <li><a href="#">Sold Item Details</a></li>
-                    <li><a href="#">Item Transaction Summary</a></li>
+                    <li><a href="EmployeeDetailed.aspx">Purchase Detailes</a></li>
+                    <li><a href="EmployeeSummary.aspx">Purchase Summary</a></li>
+                    <li><a href="SoldItemsDetails.aspx">Sold Item Details</a></li>
+                    <li><a href="ItemTransactionSummary.aspx">Item Transaction Summary</a></li>
                 </ul>
             </div>
         </nav><br />
