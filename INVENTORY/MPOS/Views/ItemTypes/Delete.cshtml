@@ -1,0 +1,41 @@
+﻿@model MPOS.App_Context.ItemType
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+
+
+<div>
+    <h2>Do You Want To Delete This?</h2>
+    <p style="color:red"><b>@ViewBag.Message</b></p>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Item Category")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ItemType1)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Factory")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Factory.Code)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

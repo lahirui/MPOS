@@ -1,0 +1,60 @@
+﻿@model IEnumerable<MPOS.Models.ItemModel>
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/json2.js"></script>
+</head>
+<body>
+    <label id="lblSelectedItemId" style="color:red"></label>
+    <div id="CategoryPanel" class="panel panel-info element" style="width:280px; height:410px; overflow-y:scroll; background-color:lightcyan;">
+
+        @using (Html.BeginForm())
+        {
+            foreach (var item in ViewBag.ItemsInCategories)
+            {
+                <a id="btnCategory" class="btn btn-info  btn-fill btn-glow-warning" role="button" style="width: 260px; height:70px; margin:2px; padding-top:15px;" onclick="getItemId(@item.ID)">
+                    <strong>@item.ItemName</strong> <br />
+
+                    <strong style="color:red;">@item.DaySellingQty</strong>
+                </a>
+                //default Width of the icon is 125px
+            }
+
+        }
+    </div>
+
+</body>
+</html>
+<script type="text/javascript">
+    function getItemId(id) {      
+        $.ajax({
+            type: 'POST',
+            data: { id: id },
+            url: '@Url.Action("getItemId", "ItemPurchases")',
+            success: function (result) {
+                $('#lblSelectedItemId').html(result.itemId);
+            }
+        });
+        }
+
+</script>
+<style type="text/css">
+    html {
+        overflow: scroll;
+    }
+
+    ::-webkit-scrollbar {
+        width: 0px;
+        background: transparent;
+    }
+
+    .element::-webkit-scrollbar {
+        width: 0 !important
+    }
+</style>

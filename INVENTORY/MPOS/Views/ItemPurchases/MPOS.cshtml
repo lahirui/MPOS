@@ -1,0 +1,322 @@
+﻿@model IEnumerable<MPOS.App_Context.ItemPurchase>
+
+@{
+    Layout = "~/Views/Shared/_PosView.cshtml";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/json2.js"></script>
+
+    <script src="~/Assets/js/sweetalert.min.js"></script>
+    <script src="~/Assets/js/ac-alert.js"></script>
+</head>
+<body style="background-color:red" onload="javascript:hidePanelOnload()">
+    <div class="panel panel-info" style="background-color:ghostwhite;">
+        <div class="panel-heading" style="padding-left:30px; padding-top:60px"><b>EMPLOYEE INFORMATION</b></div>
+        <div class="panel-body" style="padding-bottom:1px">
+            <div class="row" style="padding-top:50px;">
+                <div class="col-md-2" style="padding-left:30px;">
+                    <input id="txtEmployeeEPF" type="text" class="form-control" onkeyup="KeyUpEmployeeEPF(event)" autocomplete="off" placeholder="Employee EPF" />
+                </div>
+
+                <div class="col-md-2">
+                    <label style="font-family:Georgia; font-size:large; color:blue;">EPF:</label>
+                    <label id="lblEpf" style="font-family:digital-7; font-size:xx-large; color:red"><b></b></label>
+                </div>
+                <div class="col-md-4">
+                    <label style="font-family:Georgia; font-size:large; color:blue;">Name:</label>
+                    <label id="lblFullName" style="font-family:digital-7; font-size:x-large; color:red"><b></b></label>
+                </div>
+                <div class="col-md-2">
+                    <label style="font-family:Georgia; font-size:large; color:blue;">Balance:</label>
+                    <label style="font-family:digital-7; font-size:xx-large; color:red" id="lblBalance"><b></b></label>
+                </div>
+                <div class="col-md-1" style="background-color:transparent;">
+                    <div class="thumbnail" style="background-color:ghostwhite; border-color:transparent">
+                        <div id="TintImgDivM" style="background-color:transparent; width:100px; height:90px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label id="lblMessage" style="font-family:Georgia; font-size:x-large; color:red;"></label>
+            </div>
+        </div>
+    </div>
+    <div id="MainPanel" class="row" style="padding-left:25px;">
+        <div class="col-md-2">
+            <div class="panel panel-warning" style="width:190px; height:500px; background-color:antiquewhite;">
+                <div class="panel-heading text-center">
+                    <b>CATEGORIES</b>
+                </div>
+                <div class="panel-body" style="margin-right:20000px;">
+                    <div id="CategoryPanel" class="panel panel-warning element" style="width:158px; height:430px; overflow-y:scroll; background-color:antiquewhite">
+                        @using (Html.BeginForm())
+                        {
+                            foreach (var item in ViewBag.Categories)
+                            {
+                                <a id="btnCategory" class="btn btn-warning  btn-fill btn-glow-warning" role="button" style="width: 150px; height:50px; margin:2px; padding-top:15px;" onclick="getItems(@item.ID)"><strong>@item.ItemType1</strong></a>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="panel panel-primary" style="width:300px; height:500px; background-color:lightcyan;">
+                <div class="panel-heading text-center">
+                    <b>ITEMS</b>
+                </div>
+                <div class="panel-body">
+                    <div id="ItemsInCategories">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="panel panel-danger" style="width:300px; height:500px; background-color:#f2ebdd">
+                <div class="panel-heading text-center" style="height:30px;">
+                    <b>KEYPAD</b>
+                </div>
+                <div class="panel-body">
+                    <div class="panel panel-danger" style="height:85px; padding-bottom:20px;  background-color:lightgrey; overflow-wrap:break-word; overflow-y:scroll">
+                        <label id="lblDigits" style="font-family:digital-7; font-size:xx-large; color:red; padding-left:10px; padding-top:2px; overflow-wrap:break-word; overflow-y:scroll;">0</label><br />
+                    </div>
+                    <div id="keypad" class="panel panel-danger" style="height:335px; padding-top:10px;background-color:#f2ebdd">
+                        <div class="row-fluid text-center">
+                            @for (int i = 1; i < 4; i++)
+                            {
+                                <a href="#" id="@($"lnk{i}")" class="btn btn-default btn-lg btn-fill linkItem hover" role="button" style="margin: 2px; width: 60px; height: 60px;" onclick="clickedValue(@i)">
+                                    <h3>@i</h3><br>
+                                </a>
+                            }
+                        </div>
+                        <div class="row-fluid text-center">
+                            @for (int i = 4; i < 7; i++)
+                            {
+                                <a href="#" id="@($"lnk{i}")" class="btn btn-default btn-lg btn-fill linkItem hover" role="button" style="margin: 2px; width: 60px; height: 60px;" onclick="clickedValue(@i)">
+                                    <h3>@i</h3><br>
+                                </a>
+                            }
+                        </div>
+                        <div class="row-fluid text-center">
+                            @for (int i = 7; i < 10; i++)
+                            {
+                                <a href="#" id="@($"lnk{i}")" class="btn btn-default btn-lg btn-fill linkItem hover" role="button" style="margin: 2px; width: 60px; height: 60px;" onclick="clickedValue(@i)">
+                                    <h3>@i</h3><br>
+                                </a>
+                            }
+                        </div>
+                        <div class="row-fluid text-center">
+                            <a href="#" id="lnk." class="btn btn-default btn-lg btn-fill linkItem hover" role="button" style="margin: 2px; width: 60px; height: 60px;" onclick="clickedValue(i='.')">
+                                <h3>.</h3><br>
+                            </a>
+                            <a href="#" id="lnk0" class="btn btn-default btn-lg btn-fill linkItem hover" role="button" style="margin: 2px; width: 60px; height: 60px;" onclick="clickedValue(i=0)">
+                                <h3>0</h3><br>
+                            </a>
+                            <a href="#" id="lnkC" class="btn btn-default btn-lg btn-fill linkItem hover" role="button" style="margin: 2px; width: 60px; height: 60px;" onclick="clearLabel()">
+                                <h3>C</h3><br>
+                            </a>
+                        </div>
+                        <div class="row-fluid text-center">
+                            <a href="#" id="lnkD" class="btn btn-default btn-lg btn-fill linkItem hover" role="button" style="margin: 3px; width: 195px; height: 60px;" onclick="sendItemQty()">
+                                <h3>ENTER</h3><br>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4" style="padding-right:100px;">
+            <div class="panel panel-success" style="width:500px; height:500px; background-color:#D0F0C0;">
+                <div class="panel-heading text-center">
+                    <b>PURCHASE</b>
+                </div>
+                <div class="panel-body">
+                    <div id="ItemPurchase">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script type="text/javascript">
+
+    //Cursor on Employee EPF textbpx on page load
+    $(function () {
+        $('#txtEmployeeEPF').focus();
+    });
+
+    function InsufficiantBalance() {
+        $.ajax({
+            type: 'POST',
+            data: { message: message },
+            url: '@Url.Action("SavePurchasedItems", "ItemPurchases")',
+            success: function (result) {
+                $('#lblMessage').html(result.message);
+            }
+        });
+    }
+    //Get the value in keypad label when click ENTER Button in Keypad
+    function clickedValue(i) {
+        $('#lblDigits').append(i);
+    }
+
+    //Clear digits in keypad label
+    function clearLabel() {
+        let num = document.getElementById('lblDigits');
+        num.innerText = "0";
+    }
+
+    //Get employee EPF and send to controller to get employee details
+    function KeyUpEmployeeEPF(e) {
+        if (e.keyCode >= 8) {
+            var EmployeeEPF =  $("#txtEmployeeEPF").val();
+            $.ajax(
+                {
+                    type: 'GET',
+                    data: { EmployeeEPF: EmployeeEPF},
+                    url: '@Url.Action("EmployeeDetails", "ItemPurchases")',
+                    success: function (result)
+                    {
+
+                        if (result.CreditBalance < result.ParamValue) {
+                            $('#lblMessage').html("Credit Balance Not Sufficient");
+                            $('#CategoryPanel').hide();
+                            $('#keypad').hide();
+                            $('#lnkD').attr('disabled', true);
+                            $('#lblEpf').html(result.EPF);
+                            $('#lblFullName').html(result.FullName);
+                            $('#lblBalance').html(result.CreditBalance);
+                            $('#txtEmployeeEPF').attr('disabled', true);
+
+                            return false;
+                        }
+                        else if (result.FullName == "NO EMPLOYEE") {
+                            $('#keypad').hide();
+                            $('#lblEpf').html(result.EPF);
+                            $('#lblFullName').html(result.FullName);
+                            $('#lblBalance').html(result.CreditBalance);
+                        }
+                        else {
+                            $('#lblEpf').html(result.EPF);
+                            $('#lblFullName').html(result.FullName);
+                            $('#lblBalance').html(result.CreditBalance);
+                            $('#txtEmployeeEPF').attr('disabled', true);
+                            $('#TintImgDivM').append('<img id="TintImg" src="@Url.Action("Image", "ItemPurchases")?id=' + result.ID + '" class="img-fluid rounded-circle" style="width:100px;height:100px;" />');
+                            return false;
+                        }
+                    }
+                });
+        }
+
+    }
+    $('html').keyup(lodash.debounce(handler, 250));
+
+    //get selected item id and sent it to controller
+    function getItems(id)
+    {
+        var employeeEpf = $("#lblEpf").text();
+        if (employeeEpf != "") {
+            $("#ItemsInCategories").load("/ItemPurchases/_Items?id=" + id);
+        }
+        else if (employeeEpf == "") {
+            $('#lblMessage').html('Employee Not Selected');
+            $("#ItemsInCategories").load("/ItemPurchases/_Items?id=" + id);
+            $('#keypad').hide();
+        }
+
+    }
+
+    //Send selected item qty and clear keypad label
+    function sendItemQty() {
+        var itemQty = $("#lblDigits").text();
+        var itemId = $("#lblSelectedItemId").text();
+        var employeeEpf = $("#lblEpf").text();
+        if (itemQty <= 0 || itemQty == "") {
+            swal({
+                title: 'WARNING!',
+                text: 'Quantity Not Selected',
+                icon: "warning"
+            });
+        }
+        if (itemQty > 0) {
+            $("#ItemPurchase").load("/ItemPurchases/_getItemQtytoPurchase?itemQty=" + itemQty + "&itemId=" + itemId + "&employeeEpf=" + employeeEpf);
+            let num = document.getElementById('lblDigits');
+            num.innerText = "0";
+
+        }
+
+    }
+
+    function myfunction() {
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Action("SavePurchasedItems", "ItemPurchases")',
+            success: function (result) {
+                $('#lblMessage').html(result.message);
+            }
+        });
+    }
+
+    $(function myfunction() {
+        var success = '@TempData["NoItems"]'
+                if (success != '') {
+                    swal({
+                        title: 'ERROR!',
+                        text: '@TempData["NoItems"]',
+                        icon: "error"
+                    });
+                }
+
+                var success = '@TempData["AlreadySelected"]'
+                if (success != '') {
+                    swal({
+                        title: 'ERROR!',
+                        text: '@TempData["AlreadySelected"]',
+                        icon: "error"
+                    });
+                }
+
+                var success = '@TempData["NoBalance"]'
+                if (success != '') {
+                    swal({
+                        title: 'ERROR!',
+                        text: '@TempData["NoBalance"]',
+                        icon: "error"
+                    });
+                }
+    })
+</script>
+
+<style>
+    @@font-face {
+        font-family: "digital-7";
+        src: url(../../fonts/digital-7.regular.ttf) format("truetype");
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    .hover {
+        background-color: #f2dede;
+    }
+
+    html {
+        overflow: scroll;
+    }
+
+    ::-webkit-scrollbar {
+        width: 0px;
+        background: transparent;
+    }
+
+    .element::-webkit-scrollbar {
+        width: 0 !important
+    }
+</style>
