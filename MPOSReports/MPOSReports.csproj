@@ -284,6 +284,7 @@
     <Content Include="Reports\DataSets\ItemTransactionSummaryDS.xsc">
       <DependentUpon>ItemTransactionSummaryDS.xsd</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Reports\DataSets\ItemTransactionSummaryDS.xsd" />
     <Content Include="Reports\DataSets\ItemTransactionSummaryDS.xss">
       <DependentUpon>ItemTransactionSummaryDS.xsd</DependentUpon>
