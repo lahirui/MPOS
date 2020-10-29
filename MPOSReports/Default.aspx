@@ -1,42 +1,37 @@
-﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="MPOSReports._Default" %>
+﻿<%@ Page Title="MPOS Reports" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="MPOSReports._Default" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+   <%--  <form id="form1" runat="server">--%>
+        <div class="container container-fluid" style="margin-left:-160px">
+            <div class="row col-sm-offset-1 col-md-offset-1 col-lg-offset-1" style="padding-top:20px;">
+                <div class="col-sm-2 col-md-2 col-lg-2 ">
+                    <div class="list-group" style="border-color: #9E1030; color: whitesmoke">
+                        <div class="list-group-item h4" style="font-family: Georgia; font-weight: 500; color: whitesmoke; background-color: #9E1030; border-width: 3px; border-color: #9E1030;"><span class="fas fa-dollar-sign"></span>  Finance Reports</div>
 
-    <div class="jumbotron">
-        <h1>ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
-        <p><a href="http://www.asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-    </div>
+                        <a href="#")" class="list-group-item" style="border-top-width: 1px; border-bottom-width: 1px; border-right-color: #9E1030; border-right-width: 3px; border-left-color: #9E1030; border-left-width: 3px;">
+                            <h6 class="list-group-item-heading" style="color: #9E1030;">Purchase Detailes</h6>
+                        </a>
+                        <a href="#")" class="list-group-item" style="border-top-width: 1px; border-bottom-width: 3px;border-bottom-color: #9E1030; border-right-color: #9E1030; border-right-width: 3px; border-left-color: #9E1030; border-left-width: 3px;">
+                            <h6 class="list-group-item-heading" style="color: #9E1030;"> Purchase Summary</h6>
+                        </a>
+                       
+                    </div>
+                </div>
 
-    <div class="row">
-        <div class="col-md-4">
-            <h2>Getting started</h2>
-            <p>
-                ASP.NET Web Forms lets you build dynamic websites using a familiar drag-and-drop, event-driven model.
-            A design surface and hundreds of controls and components let you rapidly build sophisticated, powerful UI-driven sites with data access.
-            </p>
-            <p>
-                <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301948">Learn more &raquo;</a>
-            </p>
-        </div>
-        <div class="col-md-4">
-            <h2>Get more libraries</h2>
-            <p>
-                NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.
-            </p>
-            <p>
-                <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301949">Learn more &raquo;</a>
-            </p>
-        </div>
-        <div class="col-md-4">
-            <h2>Web Hosting</h2>
-            <p>
-                You can easily find a web hosting company that offers the right mix of features and price for your applications.
-            </p>
-            <p>
-                <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301950">Learn more &raquo;</a>
-            </p>
-        </div>
-    </div>
+                <div class="col-sm-2 col-md-2 col-lg-2 ">
+                    <div class="list-group" style="border-color: #9E1030; color: whitesmoke">
+                        <div class="list-group-item h4" style="font-family: Georgia; font-weight: 500; color: whitesmoke; background-color: #9E1030; border-width: 3px; border-color: #9E1030;"><span class="fas fa-coffee"></span>  Canteen Reports</div>
 
+                        
+                        <a href="#" class="list-group-item" style="border-top-width: 1px; border-bottom-color: #9E1030;  border-right-color: #9E1030; border-right-width: 3px; border-left-color: #9E1030; border-left-width: 3px;">
+                            <h6 class="list-group-item-heading" style="color: #9E1030;"> Sold Item Details</h6>
+                        </a>
+                        <a href="#" class="list-group-item" style="border-top-width: 1px; border-bottom-color: #9E1030; border-bottom-width: 3px; border-right-color: #9E1030; border-right-width: 3px; border-left-color: #9E1030; border-left-width: 3px;">
+                            <h6 class="list-group-item-heading" style="color: #9E1030;"> Item Transaction Summary</h6>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+<%--</form>--%>
 </asp:Content>
