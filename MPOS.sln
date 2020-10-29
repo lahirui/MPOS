@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.779
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MPOSReports", "MPOSReports\MPOSReports.csproj", "{6EBB55BF-001C-441D-8C72-B3C8FFDFDF25}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MPOS", "MPOS\MPOS.csproj", "{2B38E8DD-B78F-41B1-9A23-99511E72EB16}"
 EndProject
 Global
@@ -13,10 +11,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6EBB55BF-001C-441D-8C72-B3C8FFDFDF25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6EBB55BF-001C-441D-8C72-B3C8FFDFDF25}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6EBB55BF-001C-441D-8C72-B3C8FFDFDF25}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6EBB55BF-001C-441D-8C72-B3C8FFDFDF25}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2B38E8DD-B78F-41B1-9A23-99511E72EB16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2B38E8DD-B78F-41B1-9A23-99511E72EB16}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B38E8DD-B78F-41B1-9A23-99511E72EB16}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -26,6 +20,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {1F53218E-1325-4918-A95B-2D3ED10016D1}
+		SolutionGuid = {E51C4ED7-0318-4226-BB9D-96C72D8382E8}
 	EndGlobalSection
 EndGlobal

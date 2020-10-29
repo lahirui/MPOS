@@ -1,0 +1,25 @@
+﻿<div>
+    @Html.Editor("Deposit", new { htmlAttributes = new { @class = "form-control", @style="height:25px;", @type = "number", @min = "1" } })
+</div>
+
+<style>
+    input[type=number]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        display: none;
+    }
+</style>
+<script>
+    var inputBox = document.getElementById("Deposit");
+
+    var invalidChars = [
+        "-",
+        "+",
+        "e",
+    ];
+
+    inputBox.addEventListener("keydown", function (e) {
+        if (invalidChars.includes(e.key)) {
+            e.preventDefault();
+        }
+    });
+</script>

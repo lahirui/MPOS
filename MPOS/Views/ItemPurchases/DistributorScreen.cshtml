@@ -1,0 +1,75 @@
+﻿@*@model IEnumerable<MPOS.App_Context.ItemPurchase>*@
+@model List<MPOS.Models.CustomerDashboard>
+@{
+        
+        Layout = null;
+    }
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    @*<link href="~/Content/bootstrap.min.css" rel="stylesheet" />*@
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <meta http-equiv="refresh" content="3" />
+    <title>Now Serving</title>
+</head>
+<body>
+    <h1 class="text-center"><b>NOW SERVING</b></h1>
+    <div class="panel panel-heading">
+
+    </div>
+    <table class="table table-striped table-bordered table-hover table-condensed" style="font-size:xx-large">
+        <colgroup span="3"></colgroup>
+        <thead>
+            <tr>
+                <th class="text-center">
+                    @Html.DisplayName("CUSTOMER")
+                </th>
+                <th class="text-center">
+                    @Html.DisplayName("ITEM")
+                </th>
+                <th class="text-center">
+                    @Html.DisplayName("UNIT PRICE")
+                </th>
+                <th class="text-center">
+                    @Html.DisplayName("QUANTITY")
+                </th>
+                <th class="text-center">
+                    @Html.DisplayName("ITEM TOTAL")
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td >
+                        @item.Customer
+                    </td>
+
+                    <td>
+                        @item.Item
+                    </td>
+                    <td>
+                        @item.UnitPrice
+                    </td>
+                    <td>
+                        @item.Quantity
+                    </td>
+                    <td>
+                        @item.Total
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+
+
+
+    </table>
+</body>
+</html>
+
+
+

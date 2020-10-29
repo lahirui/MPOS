@@ -1,0 +1,145 @@
+﻿@model IEnumerable<MPOS.App_Context.Employee>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<link href="~/Assets/css/dataTables.semanticui.min.css" rel="stylesheet" />
+<link href="~/Assets/css/semantic.min.css" rel="stylesheet" />
+<link href="~/Assets/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+<h2>Employees</h2>
+<p style="color:red" class="text-left"><b>@ViewBag.Message</b></p>
+<div class="col-md-8">
+    <label id="lblMessage" style="font-family:Georgia; font-size:x-large; color:red;"></label>
+</div>
+@using (Html.BeginForm())
+{
+    <table id="tbl" class="table table-striped table-bordered table-hover table-condensed">
+        <thead>
+            <tr class="text-center">
+                <th>
+                    @Html.DisplayNameFor(model => model.EPF)
+                </th>
+                <th>
+                    @Html.DisplayName("Calling Name")
+                </th>
+                <th>
+                    @Html.DisplayName("Full Name")
+                </th>
+                <th>
+                    @Html.DisplayName("Balance")
+                </th>
+                <th>
+                    @Html.DisplayName("Deposit")
+                </th>
+                <th>
+                    @Html.DisplayName("Action")
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EPF)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CallingName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FullName)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreditBalance)
+                    </td>
+                    <td>
+                        @Html.Editor("txtDeposit", new { htmlAttributes = new { @class = "form-control", @style = "height:25px;", @type = "number", @min = "1", @id = "txtDeposit" + item.ID } })
+                    </td>
+                    <td class="text-center">
+                        <input id="btnDeposit" class="btn btn-info" type="button" title="Deposit" value="Deposit" style="cursor:pointer; height:25px; padding-top:1px" onclick="deposit(@item.ID)" />
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Assets/js/jquery.dataTables.min.js"></script>
+<script src="~/Assets/js/dataTables.semanticui.min.js"></script>
+<script src="~/Assets/js/semantic.min.js"></script>
+
+<script src="~/Assets/js/sweetalert.min.js"></script>
+<script src="~/Assets/js/ac-alert.js"></script>
+
+<script>
+    $('#tbl').DataTable();
+</script>
+<style>
+    input[type=number]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        display: none;
+    }
+</style>
+
+<script>
+    $(function myfunction() {
+        var success = '@TempData["success"]'
+                if (success != '') {
+                    swal({
+                        title: 'SUCCESS!',
+                        text: 'DEPOSITED SUCCESSFULLY'
+                    });
+                }
+
+                var success = '@TempData["error"]'
+                if (success != '') {
+                    PNotify.success({
+                        title: 'ERROR!',
+                        text: 'PAYMENT EXCEEDS THE ALLOWED MAX PAYMENT'
+                    });
+                }
+
+                var success = '@TempData["exception"]'
+                if (success != '') {
+                    PNotify.success({
+                        title: 'ERROR!',
+                        text: '@TempData["exception"]'
+                    });
+                }
+    })
+    function deposit(id) {
+
+        var deposit = $("#txtDeposit" + id).val();
+
+        $.ajax({
+            type: 'GET',
+            data: { deposit: deposit, id: id },
+            url: '@Url.Action("EmployeeDeposit", "Employees")',
+            success: function (result) {
+                swal("MESSAGE", result.message, "info").then(() => {
+                        location.href = '@Url.Action( "Index" , "Employees" )'
+                });
+            },
+
+        });
+    }
+    var inputBox = document.getElementById("Deposit");
+
+    var invalidChars = [
+        "-",
+        "+",
+        "e",
+
+    ];
+
+    inputBox.addEventListener("keydown", function (e) {
+        if (invalidChars.includes(e.key)) {
+            e.preventDefault();
+        }
+    });
+</script>
