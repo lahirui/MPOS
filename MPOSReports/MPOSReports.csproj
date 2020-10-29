@@ -447,10 +447,18 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Reports\RDLC\ItemTransactionSummary.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\PurchaseDetailsDS.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\PurchaseSummaryDS.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\SoldItemsDetailsDS.rdlc" />
+    <Content Include="Reports\RDLC\ItemTransactionSummary.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RDLC\PurchaseDetailsDS.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RDLC\PurchaseSummaryDS.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RDLC\SoldItemsDetailsDS.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
