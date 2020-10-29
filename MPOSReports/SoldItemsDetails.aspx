@@ -4,11 +4,12 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title></title>
-    <link href="../../Content/bootstrap.css" rel="stylesheet" />
-    <script src="../../Scripts/jquery-3.3.1.js"></script>
-    <script src="../../Assets/js/select2.full.min.js"></script>
-    <link href="../../Assets/css/select2.min.css" rel="stylesheet" />
-
+     <script src="Scripts/jquery-3.3.1.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <script src="Assets/js/select2.full.min.js"></script>
+    <link href="Assets/css/select2.min.css" rel="stylesheet" />
+    
+ 
     <script>
         $(document).ready(function () {
             $("#<%=ddlFromItem.ClientID%>").select2({
@@ -86,7 +87,7 @@
                     <div class="col-md-3">
                         <label id="Label3" runat="server">From Date</label>
                     </div>
-                    <div class="col-md-5">
+                    <div class="col-md-6">
                         <input type="text" class="form-control" style="width: 150px; height: 40px;" runat="server" disabled="disabled" id="txtFromDate" />
                     </div>
                     <div class="col-md-2">
@@ -107,7 +108,7 @@
                     <div class="col-md-3">
                         <label id="Label4" runat="server">To Date</label>
                     </div>
-                    <div class="col-md-5">
+                    <div class="col-md-6">
                         <input type="text" class="form-control" style="width: 150px; height: 40px;" runat="server" disabled="disabled" id="txtToDate" />
                     </div>
                     <div class="col-md-2">

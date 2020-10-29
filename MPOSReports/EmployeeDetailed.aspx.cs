@@ -27,7 +27,7 @@ namespace MPOSReports.WebForms
                 txtFromDate.Value = calToDate.SelectedDate.ToString("dd/MMM/yyyy");
 
                 DataSet ds = new DataSet();
-                ds = com.ReturnDataSet("SELECT ID, EPF FROM Employees WHERE(IsActive = 1) AND(IsDeleted = 0) ORDER BY EPF");
+                ds = com.ReturnDataSet("SELECT ID, EPF FROM Employees WHERE(IsActive = 1) AND(IsDeleted = 0) And FactoryId IN(1,2,3) ORDER BY EPF");
                 ddlEmployee.DataSource = ds.Tables[0];
                 ddlEmployee.DataValueField = "ID";
                 ddlEmployee.DataTextField = "EPF";

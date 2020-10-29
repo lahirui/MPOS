@@ -6,25 +6,16 @@
 
     <title></title>
 
+    
     <script src="Scripts/jquery-3.3.1.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
-    <script src="Scripts/utils.js"></script>
     <script src="Assets/js/select2.full.min.js"></script>
     <link href="Assets/css/select2.min.css" rel="stylesheet" />
-    <%-- <link href="Content/bootstrap.css" rel="stylesheet" />--%>
-
-    <%--<script>
-        $(document).ready(function () {
-            $("#<%=ddlEmployee.ClientID%>").select2({
-              placeholder: "Select Employee",
-          });
-      });
-    </script>--%>
-
+    
     <script type="text/javascript">
         $(document).ready(function () {
             $("#<%=ddlEmployee.ClientID%>").select2({
-                placeholder: "Select CPO",
+                placeholder: "Select Employee",
                 allowClear: true
             });
         });

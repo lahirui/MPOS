@@ -26,19 +26,19 @@ namespace MPOSReports.WebForms
                 calFromDate.SelectedDate = DateTime.Now;
                 txtFromDate.Value = calToDate.SelectedDate.ToString("dd/MMM/yyyy");
 
-                DataSet ds = new DataSet();
-                ds = com.ReturnDataSet("SELECT ID, ItemName FROM Items WHERE(IsDeleted = 0) ORDER BY ItemName");
-                ddlFromItem.DataSource = ds.Tables[0];
-                ddlFromItem.DataValueField = "ID";
-                ddlFromItem.DataTextField = "ItemName";
-                ddlFromItem.DataBind();
+                //DataSet ds = new DataSet();
+                //ds = com.ReturnDataSet("SELECT ID, ItemName FROM Items WHERE(IsDeleted = 0) ORDER BY ItemName");
+                //ddlFromItem.DataSource = ds.Tables[0];
+                //ddlFromItem.DataValueField = "ID";
+                //ddlFromItem.DataTextField = "ItemName";
+                //ddlFromItem.DataBind();
 
-                DataSet ds2 = new DataSet();
-                ds2 = com.ReturnDataSet("SELECT ID, ItemName FROM Items WHERE(IsDeleted = 0) ORDER BY ItemName");
-                ddltoItem.DataSource = ds2.Tables[0];
-                ddltoItem.DataValueField = "ID";
-                ddltoItem.DataTextField = "ItemName";
-                ddltoItem.DataBind();
+                //DataSet ds2 = new DataSet();
+                //ds2 = com.ReturnDataSet("SELECT ID, ItemName FROM Items WHERE(IsDeleted = 0) ORDER BY ItemName");
+                //ddltoItem.DataSource = ds2.Tables[0];
+                //ddltoItem.DataValueField = "ID";
+                //ddltoItem.DataTextField = "ItemName";
+                //ddltoItem.DataBind();
 
                 DataSet ds3 = new DataSet();
                 ds3 = com.ReturnDataSet("SELECT ID, Code FROM Factories WHERE(IsDeleted = 0) ORDER BY Code");
@@ -46,6 +46,7 @@ namespace MPOSReports.WebForms
                 ddlFactory.DataValueField = "ID";
                 ddlFactory.DataTextField = "Code";
                 ddlFactory.DataBind();
+                ddlFactory.Items.Insert(0, "--SELECT FACTORY--");
             }
         }
 
@@ -153,19 +154,33 @@ namespace MPOSReports.WebForms
 
         protected void ddlFactory_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DataSet ds = new DataSet();
-            ds = com.ReturnDataSet("SELECT ID, ItemName FROM Items WHERE(IsDeleted = 0) AND (FactoryId="+ddlFactory.SelectedValue+") ORDER BY ItemName");
-            ddlFromItem.DataSource = ds.Tables[0];
-            ddlFromItem.DataValueField = "ID";
-            ddlFromItem.DataTextField = "ItemName";
-            ddlFromItem.DataBind();
+            ddlFromItem.Items.Clear();
+            ddltoItem.Items.Clear();
+            if (ddlFactory.SelectedIndex == 0)
+            {
+                ddlFromItem.Items.Clear();
+                ddltoItem.Items.Clear();
+            }
+            else
+            {
+                ddlFromItem.Items.Clear();
+                ddltoItem.Items.Clear();
 
-            DataSet ds2 = new DataSet();
-            ds2 = com.ReturnDataSet("SELECT ID, ItemName FROM Items WHERE(IsDeleted = 0) AND (FactoryId=" + ddlFactory.SelectedValue + ") ORDER BY ItemName");
-            ddltoItem.DataSource = ds2.Tables[0];
-            ddltoItem.DataValueField = "ID";
-            ddltoItem.DataTextField = "ItemName";
-            ddltoItem.DataBind();
+                DataSet ds = new DataSet();
+                ds = com.ReturnDataSet("SELECT ID, ItemName FROM Items WHERE(IsDeleted = 0) AND (FactoryId=" + ddlFactory.SelectedValue + ") ORDER BY ItemName");
+                ddlFromItem.DataSource = ds.Tables[0];
+                ddlFromItem.DataValueField = "ID";
+                ddlFromItem.DataTextField = "ItemName";
+                ddlFromItem.DataBind();
+
+                DataSet ds2 = new DataSet();
+                ds2 = com.ReturnDataSet("SELECT ID, ItemName FROM Items WHERE(IsDeleted = 0) AND (FactoryId=" + ddlFactory.SelectedValue + ") ORDER BY ItemName");
+                ddltoItem.DataSource = ds2.Tables[0];
+                ddltoItem.DataValueField = "ID";
+                ddltoItem.DataTextField = "ItemName";
+                ddltoItem.DataBind();
+            }
+            
         }
     }
 }

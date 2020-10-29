@@ -48,7 +48,7 @@
                     <div class="col-md-2">
                         <label id="Label3" runat="server">From Date</label>
                     </div>
-                    <div class="col-md-5">
+                    <div class="col-md-6">
                         <input type="text" class="form-control" style="width: 120px; height: 40px;" runat="server" disabled="disabled" id="txtFromDate" />
                     </div>
                     <div class="col-md-2">
@@ -69,7 +69,7 @@
                     <div class="col-md-2">
                         <label id="Label4" runat="server">To Date</label>
                     </div>
-                    <div class="col-md-5">
+                    <div class="col-md-6">
                         <input type="text" class="form-control" style="width: 120px; height: 40px;" runat="server" disabled="disabled" id="txtToDate" />
                     </div>
                     <div class="col-md-2">
