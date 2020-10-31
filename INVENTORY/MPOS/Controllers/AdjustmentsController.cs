@@ -30,6 +30,9 @@ namespace MPOS.Controllers
             {
                 ZeroAddedMonth = Month.ToString("D2");
             }
+            else {
+                ZeroAddedMonth = Convert.ToString(Month);
+            }
             ZeroAddedFirstDate = FirstDay.ToString("D2");
             ViewBag.Min = Year + "-" + ZeroAddedMonth + "-" + ZeroAddedFirstDate;
             ViewBag.Max = Year + "-" + ZeroAddedMonth + "-" + LastDay;

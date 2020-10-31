@@ -238,7 +238,6 @@
     <Compile Include="Controllers\ItemTransactionsController.cs" />
     <Compile Include="Controllers\ItemTypesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -550,18 +549,13 @@
     <Content Include="Views\ItemPurchases\_getItemQtytoPurchase.cshtml" />
     <Content Include="Views\ItemTransactions\_SelectedToSell.cshtml" />
     <Content Include="Views\Shared\_LayoutReports.cshtml" />
-    <Content Include="Views\Reports\EmployeeDetailedReport.cshtml" />
-    <Content Include="Views\Reports\ReportsHome.cshtml" />
-    <Content Include="Views\Reports\EmployeeSummaryReport.cshtml" />
     <Content Include="Views\ItemPurchases\DistributorScreen.cshtml" />
     <Content Include="Views\Classes\Create.cshtml" />
     <Content Include="Views\Classes\Delete.cshtml" />
     <Content Include="Views\Classes\Details.cshtml" />
     <Content Include="Views\Classes\Edit.cshtml" />
     <Content Include="Views\Classes\Index.cshtml" />
-    <Content Include="Views\Reports\SoldItemsDetails.cshtml" />
     <Content Include="Views\Adjustments\AdjustRecords.cshtml" />
-    <Content Include="Views\Reports\ItemTransactionSummary.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
