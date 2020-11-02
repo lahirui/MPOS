@@ -40,7 +40,11 @@ namespace MPOS.Controllers
             int factoryId = Convert.ToInt32(Session["factoryId"].ToString());
             foreach (var item in Items)
             {
-                AddedReplenishments.Add(new ModelReplenishments() { ItemId = item.ID, ItemName = item.ItemName, TransactionTypeId = 1, Quantity = itemQty, EffectiveDate = DateTime.Now, FactoryId= factoryId });
+                if (factoryId == item.FactoryId)
+                {
+                    AddedReplenishments.Add(new ModelReplenishments() { ItemId = item.ID, ItemName = item.ItemName, TransactionTypeId = 1, Quantity = itemQty, EffectiveDate = DateTime.Now, FactoryId = factoryId });
+                }
+                
             }
             //Session["selectedItems"] = AddedReplenishments;
             //ViewBag.SelectedItems = Session["selectedItems"];
