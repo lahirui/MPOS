@@ -29,27 +29,31 @@ namespace MPOS.Controllers
             ViewBag.ItemID = new SelectList(db.Items.Where(i => i.FactoryId == factoryId && i.IsDeleted == false).OrderBy(i => i.ItemName), "ID", "ItemName");
             ViewBag.SelectedItems = "";
             List<ModelReplenishments> Repel = new List<ModelReplenishments>();
-            Repel.Clear();
-            AddedReplenishments.Clear();
+            //Repel.Clear();
+            //AddedReplenishments.Clear();
+            Repel.RemoveAll(f => f.FactoryId == factoryId);
+            AddedReplenishments.RemoveAll(f => f.FactoryId == factoryId);
             return View(Repel.ToList());
         }
 
         public ActionResult _SelectedToSell(int? id, decimal? itemQty)
         {
+            var factoryId = Convert.ToInt32(Session["factoryId"].ToString());
             var Items = db.Items.Where(i => i.ID == id).ToList();
-            int factoryId = Convert.ToInt32(Session["factoryId"].ToString());
+            
             foreach (var item in Items)
             {
-                if (factoryId == item.FactoryId)
-                {
+                //if (factoryId == item.FactoryId)
+                //{
                     AddedReplenishments.Add(new ModelReplenishments() { ItemId = item.ID, ItemName = item.ItemName, TransactionTypeId = 1, Quantity = itemQty, EffectiveDate = DateTime.Now, FactoryId = factoryId });
-                }
+                //}
                 
             }
-            //Session["selectedItems"] = AddedReplenishments;
+            //Session["selectedItems"] = AddedReplenishments.Where(f => f.FactoryId == factoryId).ToList();
             //ViewBag.SelectedItems = Session["selectedItems"];
-            ViewBag.SelectedItems = AddedReplenishments;
-
+            //ViewBag.SelectedItems = AddedReplenishments.Where(f=>f.FactoryId==factoryId).ToList();
+            //ViewBag.SelectedItems = (List<ModelReplenishments>)Session["selectedItems"];
+            ViewBag.SelectedItems= AddedReplenishments.Where(f => f.FactoryId == factoryId).ToList();
             return PartialView("_SelectedToSell", ViewBag.SelectedItems);
         }
 
@@ -61,14 +65,17 @@ namespace MPOS.Controllers
         }
         public ActionResult RemoveAll()
         {
-            AddedReplenishments.Clear();
+            int factoryId = Convert.ToInt32(Session["factoryId"].ToString());
+            //AddedReplenishments.Clear();
+            AddedReplenishments.RemoveAll(f => f.FactoryId == factoryId);
             return Json(JsonRequestBehavior.AllowGet, ViewBag.ItemID);
         }
         public ActionResult IssueReplenishments()
         {
             ItemTransaction itemTransaction = new ItemTransaction();
             Item item = new Item();
-            foreach (var itemsForSale in AddedReplenishments)
+            int factoryId = Convert.ToInt32(Session["factoryId"].ToString());
+            foreach (var itemsForSale in AddedReplenishments.Where(f=>f.FactoryId==factoryId))
             {
                 var CompareItemFactory = db.Items.Where(i => i.ID == itemsForSale.ItemId).FirstOrDefault();
                 if (CompareItemFactory.FactoryId == itemsForSale.FactoryId)
@@ -88,7 +95,7 @@ namespace MPOS.Controllers
                 }
                 
             }
-            AddedReplenishments.Clear();
+            AddedReplenishments.RemoveAll(f=>f.FactoryId==factoryId);
             return RedirectToAction("Replenishments");
         }
 
