@@ -40,20 +40,19 @@ namespace MPOS.Controllers
         {
             var factoryId = Convert.ToInt32(Session["factoryId"].ToString());
             var Items = db.Items.Where(i => i.ID == id).ToList();
-            
+
             foreach (var item in Items)
             {
                 //if (factoryId == item.FactoryId)
                 //{
-                    AddedReplenishments.Add(new ModelReplenishments() { ItemId = item.ID, ItemName = item.ItemName, TransactionTypeId = 1, Quantity = itemQty, EffectiveDate = DateTime.Now, FactoryId = factoryId });
+                AddedReplenishments.Add(new ModelReplenishments() { ItemId = item.ID, ItemName = item.ItemName, TransactionTypeId = 1, Quantity = itemQty, EffectiveDate = DateTime.Now, FactoryId = factoryId });
                 //}
-                
             }
             //Session["selectedItems"] = AddedReplenishments.Where(f => f.FactoryId == factoryId).ToList();
             //ViewBag.SelectedItems = Session["selectedItems"];
             //ViewBag.SelectedItems = AddedReplenishments.Where(f=>f.FactoryId==factoryId).ToList();
             //ViewBag.SelectedItems = (List<ModelReplenishments>)Session["selectedItems"];
-            ViewBag.SelectedItems= AddedReplenishments.Where(f => f.FactoryId == factoryId).ToList();
+            ViewBag.SelectedItems = AddedReplenishments.Where(f => f.FactoryId == factoryId).ToList();
             return PartialView("_SelectedToSell", ViewBag.SelectedItems);
         }
 
@@ -63,6 +62,7 @@ namespace MPOS.Controllers
             AddedReplenishments.RemoveAt(indexNo);
             return Json(JsonRequestBehavior.AllowGet, ViewBag.ItemID);
         }
+
         public ActionResult RemoveAll()
         {
             int factoryId = Convert.ToInt32(Session["factoryId"].ToString());
@@ -70,12 +70,13 @@ namespace MPOS.Controllers
             AddedReplenishments.RemoveAll(f => f.FactoryId == factoryId);
             return Json(JsonRequestBehavior.AllowGet, ViewBag.ItemID);
         }
+
         public ActionResult IssueReplenishments()
         {
             ItemTransaction itemTransaction = new ItemTransaction();
             Item item = new Item();
             int factoryId = Convert.ToInt32(Session["factoryId"].ToString());
-            foreach (var itemsForSale in AddedReplenishments.Where(f=>f.FactoryId==factoryId))
+            foreach (var itemsForSale in AddedReplenishments.Where(f => f.FactoryId == factoryId))
             {
                 var CompareItemFactory = db.Items.Where(i => i.ID == itemsForSale.ItemId).FirstOrDefault();
                 if (CompareItemFactory.FactoryId == itemsForSale.FactoryId)
@@ -87,15 +88,13 @@ namespace MPOS.Controllers
                     db.ItemTransactions.Add(itemTransaction);
                     db.SaveChanges();
 
-
                     var changedRec = db.Items.Where(i => i.ID == itemsForSale.ItemId).FirstOrDefault();
                     changedRec.DaySellingQty = changedRec.DaySellingQty + itemsForSale.Quantity;
                     db.Entry(changedRec).State = EntityState.Modified;
                     db.SaveChanges();
                 }
-                
             }
-            AddedReplenishments.RemoveAll(f=>f.FactoryId==factoryId);
+            AddedReplenishments.RemoveAll(f => f.FactoryId == factoryId);
             return RedirectToAction("Replenishments");
         }
 
