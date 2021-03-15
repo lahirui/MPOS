@@ -50,7 +50,7 @@ namespace POS.PRL
                          "FROM     dbo.ItemPurchase INNER JOIN " +
                                           "dbo.Employees ON dbo.ItemPurchase.EmployeeId = dbo.Employees.ID INNER JOIN " +
                                           "dbo.Items ON dbo.ItemPurchase.ItemId = dbo.Items.ID " +
-                        "WHERE (dbo.ItemPurchase.CashierId = " + Variables._CashierId + ") " +
+                        "WHERE (dbo.ItemPurchase.CashierId = " + Variables._CashierId + ") AND (CAST(dbo.ItemPurchase.EffectiveDate AS DATE)=(CAST(GETDATE() AS DATE))) " +
                         "ORDER BY dbo.ItemPurchase.ID DESC) t1 WHERE RN <= 30");
             gvScreen.DataSource = dsScreen.Tables[0];
 
