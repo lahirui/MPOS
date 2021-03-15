@@ -28,41 +28,47 @@
                     @Html.DisplayName("Full Name")
                 </th>
                 <th>
+                    @Html.DisplayName("Department")
+                </th>
+                <th>
                     @Html.DisplayName("Balance")
                 </th>
-                <th>
-                    @Html.DisplayName("Deposit")
-                </th>
-                <th>
-                    @Html.DisplayName("Action")
-                </th>
+                @*<th>
+            @Html.DisplayName("Deposit")
+        </th>
+        <th>
+            @Html.DisplayName("Action")
+        </th>*@
             </tr>
         </thead>
         <tbody>
 
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.EPF)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CallingName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FullName)
-                    </td>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EPF)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CallingName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Department)
+                </td>
 
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CreditBalance)
-                    </td>
-                    <td>
-                        @Html.Editor("txtDeposit", new { htmlAttributes = new { @class = "form-control", @style = "height:25px;", @type = "number", @min = "1", @id = "txtDeposit" + item.ID } })
-                    </td>
-                    <td class="text-center">
-                        <input id="btnDeposit" class="btn btn-info" type="button" title="Deposit" value="Deposit" style="cursor:pointer; height:25px; padding-top:1px" onclick="deposit(@item.ID)" />
-                    </td>
-                </tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreditBalance)
+                </td>
+                @*<td>
+            @Html.Editor("txtDeposit", new { htmlAttributes = new { @class = "form-control", @style = "height:25px;", @type = "number", @min = "1", @id = "txtDeposit" + item.ID } })
+        </td>
+        <td class="text-center">
+            <input id="btnDeposit" class="btn btn-info" type="button" title="Deposit" value="Deposit" style="cursor:pointer; height:25px; padding-top:1px" onclick="deposit(@item.ID)" />
+        </td>*@
+            </tr>
             }
         </tbody>
     </table>

@@ -18,7 +18,7 @@ namespace MPOS.Controllers
         public ActionResult Index()
         {
             int factoryId = Convert.ToInt32(Session["factoryId"].ToString());
-            var employees = db.Employees.Include(e => e.Factory).Where(e => e.FactoryId == factoryId && e.IsActive==true).OrderBy(e => e.EPF);
+            var employees = db.Employees.Include(e => e.Factory).Where(e => e.FactoryId == factoryId && e.IsActive==true && e.IsDeleted == false).OrderBy(e => e.EPF);
             return View(employees.ToList());
         }
 
