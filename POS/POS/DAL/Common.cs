@@ -21,8 +21,8 @@ namespace POS.DAL
 
             if (string.IsNullOrEmpty(conSQL.ConnectionString))
             {
-                conSQL.ConnectionString = "Data Source=LAHIRU-IT;Initial Catalog= CMPOS;Persist Security info=True;User ID=sa;Password=Las@0777;Connect Timeout=0";
-                //conSQL.ConnectionString = "Data Source=192.168.58.219;Initial Catalog= MPOS;Persist Security info=True;User ID=sa;Password=welcome@123;Connect Timeout=0";
+                //conSQL.ConnectionString = "Data Source=LAHIRU-IT;Initial Catalog= CMPOS;Persist Security info=True;User ID=sa;Password=Las@0777;Connect Timeout=0";
+                conSQL.ConnectionString = "Data Source=192.168.58.219;Initial Catalog= MPOS;Persist Security info=True;User ID=sa;Password=welcome@123;Connect Timeout=0";
                 //conSQL.ConnectionString = "Data Source=192.168.58.232;Initial Catalog= MPOS;Persist Security info=True;User ID=sa;Password=crystal@Martin;Connect Timeout=0";
 
             }

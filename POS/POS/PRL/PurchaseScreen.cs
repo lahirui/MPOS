@@ -6,7 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading;
+//using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -15,6 +15,7 @@ namespace POS.PRL
     public partial class PurchaseScreen : Form
     {
         Common com = new Common();
+        private System.Windows.Forms.Timer timer1;
         public PurchaseScreen()
         {
             InitializeComponent();
@@ -29,6 +30,10 @@ namespace POS.PRL
 
         private void PurchaseScreen_Load(object sender, EventArgs e)
         {
+            timer1 = new Timer();
+            timer1.Tick += new EventHandler(timerScreen_Tick);
+            timer1.Interval = 3000; // in miliseconds
+            timer1.Start();
             //    Timer timer = new Timer();
             //    timer.Interval = (2 * 1000); // 10 secs
             //    timer.Tick += new EventHandler(timerScreen_Tick);
